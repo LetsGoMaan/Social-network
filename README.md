@@ -19,3 +19,4 @@
 19. Работа с маршрутизацией, Route, Browser-router
 20. Использование NavLink
 21. Верстка страницы Dialogs
+22. Теория о Route Exact, добавление NavLink в Dialogs
