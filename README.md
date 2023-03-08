@@ -10,3 +10,4 @@
 10. Опасность default export и auto export
 11. Базовая верстка, GRID
 12. Разделение на компоненты(Header,NavBar, Profile) 
+13. Git, git checkout
