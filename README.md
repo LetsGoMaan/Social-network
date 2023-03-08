@@ -11,3 +11,4 @@
 11. Базовая верстка, GRID
 12. Разделение на компоненты(Header,NavBar, Profile) 
 13. Git, git checkout
+14. Использование CSS-модулей
