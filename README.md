@@ -20,3 +20,4 @@
 20. Использование NavLink
 21. Верстка страницы Dialogs
 22. Теория о Route Exact, добавление NavLink в Dialogs
+23. Используем props в компоненте Dialogs
