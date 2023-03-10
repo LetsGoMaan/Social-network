@@ -1,22 +1,22 @@
 import React from "react";
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
+import {PostsType} from "../../App";
 
 
-export const Profile = () => {
+type ProfilePropsType = {
+    posts: Array<PostsType>
+}
 
-    const posts = [
-        {id: 1, message: "Hi, how are you", likesCount: 5},
-        {id: 2, message: "It's my first post", likesCount: 10},
-        {id: 2, message: "It's my first post", likesCount: 10},
-        {id: 2, message: "It's my first post", likesCount: 10},
-    ]
+export const Profile = (props: ProfilePropsType) => {
+
+
 
 
     return (
         <>
             <ProfileInfo />
-            <MyPosts posts={posts}/>
+            <MyPosts posts={props.posts}/>
         </>
     );
 };
