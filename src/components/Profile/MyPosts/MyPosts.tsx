@@ -5,6 +5,7 @@ import {PostsType} from "../../../App";
 
 type MyPostsPropsType = {
     posts: Array<PostsType>
+    addPost: (postMessage: string) => void
 }
 
 
@@ -15,9 +16,10 @@ export const MyPosts = (props:MyPostsPropsType) => {
     const newPostElement = React.createRef<HTMLTextAreaElement>()
 
     const addPost = () => {
+        debugger;
         // тоже самое что и внизу alert(newPostElement.current?.value)
         if(newPostElement.current) {
-            alert(newPostElement.current.value)
+            props.addPost(newPostElement.current.value)
         }
     }
 
