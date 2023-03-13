@@ -30,7 +30,7 @@ export type DialogsPageType = {
     messages: Array<MessagesType>
 }
 
-type StateType = {
+export type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
 }
