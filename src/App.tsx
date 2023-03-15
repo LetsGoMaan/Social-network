@@ -24,10 +24,12 @@ export type MessagesType = {
 }
 export type ProfilePageType = {
     posts: Array<PostsType>
+    newPostText: string
 }
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
+    newMessageText: string
 }
 
 export type StateType = {
@@ -37,7 +39,10 @@ export type StateType = {
 
 export type AppPropsType = {
     state: StateType
-    addPost: (postMessage: string) => void
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
+    addMessage: () => void
+    updateNewMessageText: (newText: string) => void
 }
 
 function App(props: AppPropsType) {
@@ -46,9 +51,12 @@ function App(props: AppPropsType) {
             <Header/>
             <NavBar/>
             <div className="app-wrapper-content">
-                <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage}/>}/>
-                <Route path="/profile" render={() => <Profile state={props.state.profilePage}
-                                                              addPost={props.addPost}/>}/>
+                <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage}
+                                                              addMessage={props.addMessage}
+                                                              updateNewMessageText={props.updateNewMessageText}/>}/>
+                <Route path="/profile" render={() => <Profile profilePage={props.state.profilePage}
+                                                              addPost={props.addPost}
+                                                              updateNewPostText={props.updateNewPostText}/>}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>
                 <Route path="/settings" render={() => <Settings/>}/>

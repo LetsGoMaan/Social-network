@@ -5,7 +5,9 @@ import {PostsType} from "../../../App";
 
 type MyPostsPropsType = {
     posts: Array<PostsType>
-    addPost: (postMessage: string) => void
+    addPost: () => void
+    newPostText: string
+    updateNewPostText: (newText: string) => void
 }
 
 
@@ -16,11 +18,12 @@ export const MyPosts = (props:MyPostsPropsType) => {
     const newPostElement = React.createRef<HTMLTextAreaElement>()
 
     const addPost = () => {
+            props.addPost()
+    }
 
-        // тоже самое что и внизу alert(newPostElement.current?.value)
+    const onPostChange = () => {
         if(newPostElement.current) {
-            props.addPost(newPostElement.current.value)
-            newPostElement.current.value = ''
+            props.updateNewPostText(newPostElement.current.value)
         }
     }
 
@@ -29,7 +32,7 @@ export const MyPosts = (props:MyPostsPropsType) => {
             <div className={classes.postBlock}>
                 <h3>My posts</h3>
                 <div>
-                    <div><textarea ref={newPostElement}></textarea></div>
+                    <div><textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/></div>
                     <div>
                         <button onClick={addPost}>Add post</button>
                     </div>
