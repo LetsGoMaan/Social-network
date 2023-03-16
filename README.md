@@ -34,3 +34,4 @@
 34. FLUX-круговорот на каждый символ
 35. Callback, Subscribe, Observer
 36. ООП, Гетеры, Сетеры
+37. Store, State, ООП, рефакторинг
