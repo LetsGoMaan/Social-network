@@ -36,3 +36,4 @@
 36. ООП, Гетеры, Сетеры
 37. Store, State, ООП, рефакторинг
 38. Dispatch и Action
+39. Action creator и Action type

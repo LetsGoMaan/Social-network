@@ -1,6 +1,5 @@
 import {StateType} from "../App";
 
-
 type AddPostActionType = {
     type: "ADD-POST"
 }
@@ -15,10 +14,7 @@ type UpdateNewMessageTextActionType = {
     type: "UPDATE-NEW-MESSAGE-TEXT"
     newText: string
 }
-
 export type ActionsType = AddPostActionType | AddMessageActionType | UpdateNewPostTextActionType | UpdateNewMessageTextActionType
-
-
 export type StoreType = {
     _state: StateType
     _callSubscriber: (state: StateType) => void
@@ -26,6 +22,34 @@ export type StoreType = {
     subscribe: (observer: (state: StateType) => void) => void
     dispatch: (action: ActionsType) => void
 
+}
+
+const ADD_POST = "ADD-POST"
+const ADD_MESSAGE = "ADD-MESSAGE"
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
+const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT"
+
+export const addPostActionCreator = ():AddPostActionType => {
+    return {
+        type: ADD_POST
+    }
+}
+export const addMessageActionCreator = ():AddMessageActionType => {
+    return {
+        type: ADD_MESSAGE
+    }
+}
+export const updateNewPostTextActionCreator = (newText: string):UpdateNewPostTextActionType => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: newText
+    }
+}
+export const updateNewMessageTextActionCreator = (newText: string):UpdateNewMessageTextActionType => {
+    return {
+        type: UPDATE_NEW_MESSAGE_TEXT,
+        newText: newText
+    }
 }
 
 const store: StoreType = {
@@ -103,7 +127,7 @@ const store: StoreType = {
     //     this._callSubscriber(this._state)
     // },
     dispatch (action: any) {
-        if(action.type === "ADD-POST") {
+        if(action.type === ADD_POST) {
             const newPost = {
                 id: 5,
                 message: this._state.profilePage.newPostText,
@@ -114,7 +138,7 @@ const store: StoreType = {
             this._state.profilePage.newPostText = ""
             this._callSubscriber(this._state)
         }
-        else if (action.type === "ADD-MESSAGE") {
+        else if (action.type === ADD_MESSAGE) {
             const newPost = {
                 id: 5,
                 message: this._state.dialogsPage.newMessageText,
@@ -124,11 +148,11 @@ const store: StoreType = {
             this._state.dialogsPage.newMessageText = ""
             this._callSubscriber(this._state)
         }
-        else if (action.type === "UPDATE-NEW-POST-TEXT") {
+        else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText
             this._callSubscriber(this._state)
         }
-        else if (action.type === "UPDATE-NEW-MESSAGE-TEXT") {
+        else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
             this._state.dialogsPage.newMessageText = action.newText
             this._callSubscriber(this._state)
         }
