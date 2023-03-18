@@ -35,3 +35,4 @@
 35. Callback, Subscribe, Observer
 36. ООП, Гетеры, Сетеры
 37. Store, State, ООП, рефакторинг
+38. Dispatch и Action

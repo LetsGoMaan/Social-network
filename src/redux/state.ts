@@ -1,9 +1,35 @@
 import {StateType} from "../App";
 
-const store = {
+
+type AddPostActionType = {
+    type: "ADD-POST"
+}
+type AddMessageActionType = {
+    type: "ADD-MESSAGE"
+}
+type UpdateNewPostTextActionType = {
+    type: "UPDATE-NEW-POST-TEXT"
+    newText: string
+}
+type UpdateNewMessageTextActionType = {
+    type: "UPDATE-NEW-MESSAGE-TEXT"
+    newText: string
+}
+
+export type ActionsType = AddPostActionType | AddMessageActionType | UpdateNewPostTextActionType | UpdateNewMessageTextActionType
+
+
+export type StoreType = {
+    _state: StateType
+    _callSubscriber: (state: StateType) => void
+    getState: () => StateType
+    subscribe: (observer: (state: StateType) => void) => void
+    dispatch: (action: ActionsType) => void
+
+}
+
+const store: StoreType = {
     _state: {
-
-
         profilePage: {
             posts: [
                 {id: 1, message: "Hi, how are you", likesCount: 5},
@@ -33,49 +59,82 @@ const store = {
             newMessageText: ""
         }
     },
-    getState() {
-        return this._state
-    },
     _callSubscriber(state: StateType) {
         console.log("state changed")
     },
 
-    addPost() {
-
-        const newPost = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likesCount: 0,
-        }
-
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = ""
-        this._callSubscriber(this._state)
+    getState() {
+        return this._state
     },
-    addMessage() {
-
-        const newPost = {
-            id: 5,
-            message: this._state.dialogsPage.newMessageText,
-        }
-
-        this._state.dialogsPage.messages.push(newPost)
-        this._state.dialogsPage.newMessageText = ""
-        this._callSubscriber(this._state)
-    },
-
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber(this._state)
-    },
-    updateNewMessageText(newText: string) {
-        this._state.dialogsPage.newMessageText = newText
-        this._callSubscriber(this._state)
-    },
-
     subscribe(observer: (state: StateType) => void) {
         this._callSubscriber = observer
     },
+
+    // addPost() {
+    //
+    //     const newPost = {
+    //         id: 5,
+    //         message: this._state.profilePage.newPostText,
+    //         likesCount: 0,
+    //     }
+    //
+    //     this._state.profilePage.posts.push(newPost)
+    //     this._state.profilePage.newPostText = ""
+    //     this._callSubscriber(this._state)
+    // },
+    // addMessage() {
+    //
+    //     const newPost = {
+    //         id: 5,
+    //         message: this._state.dialogsPage.newMessageText,
+    //     }
+    //
+    //     this._state.dialogsPage.messages.push(newPost)
+    //     this._state.dialogsPage.newMessageText = ""
+    //     this._callSubscriber(this._state)
+    // },
+    //
+    // updateNewPostText(newText: string) {
+    //     this._state.profilePage.newPostText = newText
+    //     this._callSubscriber(this._state)
+    // },
+    // updateNewMessageText(newText: string) {
+    //     this._state.dialogsPage.newMessageText = newText
+    //     this._callSubscriber(this._state)
+    // },
+    dispatch (action: any) {
+        if(action.type === "ADD-POST") {
+            const newPost = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likesCount: 0,
+            }
+
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = ""
+            this._callSubscriber(this._state)
+        }
+        else if (action.type === "ADD-MESSAGE") {
+            const newPost = {
+                id: 5,
+                message: this._state.dialogsPage.newMessageText,
+            }
+
+            this._state.dialogsPage.messages.push(newPost)
+            this._state.dialogsPage.newMessageText = ""
+            this._callSubscriber(this._state)
+        }
+        else if (action.type === "UPDATE-NEW-POST-TEXT") {
+            this._state.profilePage.newPostText = action.newText
+            this._callSubscriber(this._state)
+        }
+        else if (action.type === "UPDATE-NEW-MESSAGE-TEXT") {
+            this._state.dialogsPage.newMessageText = action.newText
+            this._callSubscriber(this._state)
+        }
+    },
+
+
 }
 
 // let rerenderEntireTree = (state: StateType) => {

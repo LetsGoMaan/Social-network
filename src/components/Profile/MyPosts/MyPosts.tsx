@@ -2,12 +2,14 @@ import React from "react";
 import classes from "./MyPosts.module.css"
 import {Post} from "./Post/Post";
 import {PostsType} from "../../../App";
+import {ActionsType} from "../../../redux/state";
 
 type MyPostsPropsType = {
     posts: Array<PostsType>
-    addPost: () => void
+    dispatch: (action: ActionsType) => void
+    // addPost: () => void
     newPostText: string
-    updateNewPostText: (newText: string) => void
+    // updateNewPostText: (newText: string) => void
 }
 
 
@@ -18,12 +20,15 @@ export const MyPosts = (props:MyPostsPropsType) => {
     const newPostElement = React.createRef<HTMLTextAreaElement>()
 
     const addPost = () => {
-            props.addPost()
+            props.dispatch({type: "ADD-POST"})
     }
 
     const onPostChange = () => {
+        // if(newPostElement.current) {
+        //     props.updateNewPostText(newPostElement.current.value)
+        // }
         if(newPostElement.current) {
-            props.updateNewPostText(newPostElement.current.value)
+            props.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: newPostElement.current.value })
         }
     }
 

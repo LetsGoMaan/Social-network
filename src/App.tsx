@@ -8,6 +8,7 @@ import {Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
+import {ActionsType} from "./redux/state";
 
 export type PostsType = {
     id: number
@@ -39,11 +40,13 @@ export type StateType = {
 
 export type AppPropsType = {
     state: StateType
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
-    addMessage: () => void
-    updateNewMessageText: (newText: string) => void
+    dispatch: (action: ActionsType) => void
+    // addPost: () => void
+    // updateNewPostText: (newText: string) => void
+    // addMessage: () => void
+    // updateNewMessageText: (newText: string) => void
 }
+
 
 function App(props: AppPropsType) {
     return (
@@ -52,11 +55,9 @@ function App(props: AppPropsType) {
             <NavBar/>
             <div className="app-wrapper-content">
                 <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage}
-                                                              addMessage={props.addMessage}
-                                                              updateNewMessageText={props.updateNewMessageText}/>}/>
+                                                              dispatch={props.dispatch}/>}/>
                 <Route path="/profile" render={() => <Profile profilePage={props.state.profilePage}
-                                                              addPost={props.addPost}
-                                                              updateNewPostText={props.updateNewPostText}/>}/>
+                                                              dispatch={props.dispatch}/>}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>
                 <Route path="/settings" render={() => <Settings/>}/>
