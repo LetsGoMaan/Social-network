@@ -38,3 +38,4 @@
 38. Dispatch и Action
 39. Action creator и Action type
 40. Проверка правильности добавления сообщений на странице Messages
+41. Reducers

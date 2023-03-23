@@ -3,7 +3,8 @@ import classes from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {DialogsPageType} from "../../App";
-import {ActionsType, addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/state";
+import {ActionsType} from "../../redux/state";
+import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/dialogs-reducer";
 
 type DialogsPropsType = {
     state: DialogsPageType
