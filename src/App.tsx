@@ -3,12 +3,12 @@ import "./App.css";
 import {Header} from "./components/Header/Header";
 import NavBar from "./components/NavBar/NavBar";
 import {Profile} from "./components/Profile/Profile";
-import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {ActionsType} from "./redux/store";
+import {StoreType} from "./redux/store";
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 export type PostsType = {
     id: number
@@ -39,8 +39,9 @@ export type StateType = {
 }
 
 export type AppPropsType = {
-    state: StateType
-    dispatch: (action: ActionsType) => void
+    store: StoreType
+    // state: StateType
+    // dispatch: (action: ActionsType) => void
     // addPost: () => void
     // updateNewPostText: (newText: string) => void
     // addMessage: () => void
@@ -56,10 +57,8 @@ function App(props: AppPropsType) {
             <Header/>
             <NavBar/>
             <div className="app-wrapper-content">
-                <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage}
-                                                              dispatch={props.dispatch}/>}/>
-                <Route path="/profile" render={() => <Profile profilePage={props.state.profilePage}
-                                                              dispatch={props.dispatch}/>}/>
+                <Route path="/dialogs" render={() => <DialogsContainer store={props.store}/>}/>
+                <Route path="/profile" render={() => <Profile store={props.store}/>}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>
                 <Route path="/settings" render={() => <Settings/>}/>
