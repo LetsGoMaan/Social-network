@@ -43,3 +43,4 @@
 43. Контейнерная компонента
 44. Context API
 45. Сonnect, MapStateToProps, MapDispatchToProps
+46. Поверхностная и глубокая копия
