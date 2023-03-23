@@ -8,7 +8,7 @@ import {Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {ActionsType} from "./redux/state";
+import {ActionsType} from "./redux/store";
 
 export type PostsType = {
     id: number
@@ -49,6 +49,8 @@ export type AppPropsType = {
 
 
 function App(props: AppPropsType) {
+
+    console.log(props)
     return (
         <div className="app-wrapper">
             <Header/>
