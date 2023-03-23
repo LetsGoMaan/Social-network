@@ -1,8 +1,16 @@
-import {ActionsType} from "./store";
-import {DialogsPageType} from "../App";
+import {ActionsType} from "./redux-store";
 
 const ADD_MESSAGE = "ADD-MESSAGE"
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT"
+
+export type DialogsType = {
+    id: number
+    name: string
+}
+export type MessagesType = {
+    id: number
+    message: string
+}
 
 let initialState = {
     dialogs: [
@@ -12,7 +20,7 @@ let initialState = {
         {id: 4, name: "Sveta"},
         {id: 5, name: "Sasha"},
         {id: 6, name: "Valera"},
-    ],
+    ] as Array<DialogsType>,
     messages: [
         {id: 1, message: "Hi"},
         {id: 2, message: "How are you"},
@@ -20,11 +28,13 @@ let initialState = {
         {id: 4, message: "Kavabanga"},
         {id: 5, message: "IlikeSeik"},
         {id: 6, message: "YOLO"},
-    ],
+    ] as Array<MessagesType>,
     newMessageText: ""
 }
 
-export const dialogsReducer = (state: DialogsPageType = initialState, action:ActionsType) => {
+export type InitialStateType = typeof initialState
+
+export const dialogsReducer = (state: InitialStateType = initialState, action:ActionsType):InitialStateType => {
     switch (action.type) {
         case ADD_MESSAGE:
             const newPost = {

@@ -1,27 +1,11 @@
 import {StateType} from "../App";
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
+import {ActionsType} from "./redux-store";
 
-type AddPostActionType = {
-    type: "ADD-POST"
-}
-type AddMessageActionType = {
-    type: "ADD-MESSAGE"
-}
-type UpdateNewPostTextActionType = {
-    type: "UPDATE-NEW-POST-TEXT"
-    newText: string
-}
-type UpdateNewMessageTextActionType = {
-    type: "UPDATE-NEW-MESSAGE-TEXT"
-    newText: string
-}
-export type ActionsType =
-    AddPostActionType
-    | AddMessageActionType
-    | UpdateNewPostTextActionType
-    | UpdateNewMessageTextActionType
-export type StoreType = {
+
+
+ type StoreType = {
     _state: StateType
     _callSubscriber: (state: StateType) => void
     getState: () => StateType
@@ -61,7 +45,7 @@ const store: StoreType = {
             newMessageText: ""
         }
     },
-    _callSubscriber(state: StateType) {
+    _callSubscriber() {
         console.log("state changed")
     },
 
