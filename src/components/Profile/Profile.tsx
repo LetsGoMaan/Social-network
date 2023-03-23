@@ -1,11 +1,10 @@
 import React from "react";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {StoreType} from "../../redux/store";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 
 type ProfilePropsType = {
-    store: StoreType
+    // store: StoreType
     // profilePage: ProfilePageType
     // dispatch: (action: ActionsType) => void
     // addPost: () => void
@@ -17,7 +16,7 @@ export const Profile = (props: ProfilePropsType) => {
     return (
         <>
             <ProfileInfo />
-            <MyPostsContainer store={props.store}/>
+            <MyPostsContainer />
         </>
     );
 };
