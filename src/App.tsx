@@ -10,6 +10,7 @@ import {Settings} from "./components/Settings/Settings";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {PostsType} from "./redux/profile-reducer";
 import {DialogsType, MessagesType} from "./redux/dialogs-reducer";
+import {UsersContainer} from "./components/Users/UsersContainer";
 
 export type ProfilePageType = {
     posts: Array<PostsType>
@@ -46,6 +47,7 @@ function App() {
             <div className="app-wrapper-content">
                 <Route path="/dialogs" render={() => <DialogsContainer />}/>
                 <Route path="/profile" render={() => <Profile />}/>
+                <Route path="/users" render={() => <UsersContainer/>}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>
                 <Route path="/settings" render={() => <Settings/>}/>
