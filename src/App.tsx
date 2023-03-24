@@ -26,20 +26,19 @@ export type StateType = {
     dialogsPage: DialogsPageType
 }
 
-export type AppPropsType = {
-    // store: StoreType
-    // state: StateType
-    // dispatch: (action: ActionsType) => void
-    // addPost: () => void
-    // updateNewPostText: (newText: string) => void
-    // addMessage: () => void
-    // updateNewMessageText: (newText: string) => void
-}
+// export type AppPropsType = {
+//     // store: StoreType
+//     // state: StateType
+//     // dispatch: (action: ActionsType) => void
+//     // addPost: () => void
+//     // updateNewPostText: (newText: string) => void
+//     // addMessage: () => void
+//     // updateNewMessageText: (newText: string) => void
+// }
 
 
-function App(props: AppPropsType) {
+function App() {
 
-    console.log(props)
     return (
         <div className="app-wrapper">
             <Header/>

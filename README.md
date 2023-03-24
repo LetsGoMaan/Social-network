@@ -45,3 +45,4 @@
 45. Сonnect, MapStateToProps, MapDispatchToProps
 46. Поверхностная и глубокая копия
 47. Делаем копию состояния в ProfileReducer
+48. Делаем копию состояния в DialogReducer
