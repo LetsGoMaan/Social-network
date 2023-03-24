@@ -41,12 +41,17 @@ export const dialogsReducer = (state: InitialStateType = initialState, action:Ac
                 id: 5,
                 message: state.newMessageText,
             }
-            state.messages.push(newPost)
-            state.newMessageText = ""
-            return state
-        case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.newText
-            return state
+            let stateCopy = {...state}
+            stateCopy.messages = [...state.messages]
+            stateCopy.messages.push(newPost)
+            stateCopy.newMessageText = ""
+            return stateCopy
+        case UPDATE_NEW_MESSAGE_TEXT: {
+            let copyState = {...state}
+            copyState.newMessageText = action.newText
+            return copyState
+        }
+
         default:
             return state
     }

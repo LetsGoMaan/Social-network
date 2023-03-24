@@ -44,3 +44,4 @@
 44. Context API
 45. Сonnect, MapStateToProps, MapDispatchToProps
 46. Поверхностная и глубокая копия
+47. Делаем копию состояния в ProfileReducer
