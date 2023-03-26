@@ -20,5 +20,5 @@ export const Post = (props: PostPropsType) => {
                 </div>
             </div>
         </>
-    );
+    )
 };
