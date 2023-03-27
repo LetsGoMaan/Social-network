@@ -51,3 +51,4 @@
 51. Users API
 52. Сайд-эффекты 
 53. Классовый компонент
+54. Жизненный цикл, Life cycle methods, ComponentDidMount
