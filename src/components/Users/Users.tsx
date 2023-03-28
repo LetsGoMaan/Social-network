@@ -14,26 +14,25 @@ type UsersPropsType = {
 }
 
 
-const Users = (props:UsersPropsType) => {
-        let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-        let pages = [];
-        for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i)
-        }
-        return (
+const Users = (props: UsersPropsType) => {
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
+    }
+    return (
+        <div>
             <div>
-                return (
                 <div>
-                    <div>
-                        {pages.map(p => {
-                            return <span className={props.currentPage === p ? styles.selectedPage : ""}
-                                         onClick={() => {
-                                             props.onPageChanged(p)
-                                         }}>{p} </span>
-                        })}
-                    </div>
-                    {
-                        props.users.map(u => <div key={u.id}>
+                    {pages.map(p => {
+                        return <span className={props.currentPage === p ? styles.selectedPage : ""}
+                                     onClick={() => {
+                                         props.onPageChanged(p)
+                                     }}>{p} </span>
+                    })}
+                </div>
+                {
+                    props.users.map(u => <div key={u.id}>
                 <span>
                 <div>
                 <img className={styles.userPhoto} src={u.photos.small ? u.photos.small : userPhoto} alt={"userPhoto"}/>
@@ -46,7 +45,7 @@ const Users = (props:UsersPropsType) => {
             }}>Follow</button>}
                 </div>
                 </span>
-                            <span>
+                        <span>
                 <span>
                 <div>{u.name}</div>
                 <div>{u.status}</div>
@@ -56,11 +55,10 @@ const Users = (props:UsersPropsType) => {
                 <div>{"u.location.city"}</div>
                 </span>
                 </span>
-                        </div>)
-                    }
-                </div>
-                )
+                    </div>)
+                }
             </div>
-        );
-    };
+        </div>
+    );
+};
 export default Users;

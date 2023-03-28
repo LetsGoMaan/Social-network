@@ -36,14 +36,17 @@ type SetUsersAT = {
     type: "SET_USERS"
     users: Array<UsersType>
 }
-type SetCurrepntPageAT = {
+type SetCurrentPageAT = {
     type: "SET_CURRENT_PAGE",
     currentPage: number
 }
-
 type SetUsersTotalCountAT = {
     type: "SET_TOTAL_USERS_COUNT",
     totalUsersCount: number
+}
+type ToggleIsFetchingAT = {
+    type: "TOGGLE_IS_FETCHING",
+    isFetching: boolean
 }
 
 export type ActionsType =
@@ -54,8 +57,9 @@ export type ActionsType =
     | FollowAT
     | UnfollowAT
     | SetUsersAT
-    | SetCurrepntPageAT
+    | SetCurrentPageAT
     | SetUsersTotalCountAT
+    | ToggleIsFetchingAT
 
 export type AppStateType = ReturnType<typeof rootReducer>
 
