@@ -32,10 +32,18 @@ type UnfollowAT = {
     type: "UNFOLLOW"
     userId: number
 }
-
 type SetUsersAT = {
     type: "SET_USERS"
     users: Array<UsersType>
+}
+type SetCurrepntPageAT = {
+    type: "SET_CURRENT_PAGE",
+    currentPage: number
+}
+
+type SetUsersTotalCountAT = {
+    type: "SET_TOTAL_USERS_COUNT",
+    totalUsersCount: number
 }
 
 export type ActionsType =
@@ -46,6 +54,8 @@ export type ActionsType =
     | FollowAT
     | UnfollowAT
     | SetUsersAT
+    | SetCurrepntPageAT
+    | SetUsersTotalCountAT
 
 export type AppStateType = ReturnType<typeof rootReducer>
 
