@@ -10,7 +10,7 @@ import {Settings} from "./components/Settings/Settings";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {PostsType} from "./redux/profile-reducer";
 import {DialogsType, MessagesType} from "./redux/dialogs-reducer";
-import {UsersContainer} from "./components/Users/UsersContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 export type ProfilePageType = {
     posts: Array<PostsType>

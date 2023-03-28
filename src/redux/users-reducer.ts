@@ -29,7 +29,7 @@ let initialState = {
     users: [] as Array<UsersType>,
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 2
+    currentPage: 1
     //     [
     //     {id: 1, photoUrl: "https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png", followed: false, fullName: "Dmitry", status: "I am a boss", location: {city: "Minsk", country: "Belarus"}},
     //     {id: 2, photoUrl: "https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png", followed: true, fullName: "Andrew", status: "I am a boss too", location: {city: "Moscow", country: "Russia"}},
