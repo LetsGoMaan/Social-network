@@ -2,6 +2,7 @@ import {combineReducers, createStore} from "redux";
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import usersReducer, {UsersType} from "./users-reducer";
+import {ProfileType} from "../components/Profile/ProfileContainer";
 
 
 let rootReducer = combineReducers({
@@ -49,6 +50,13 @@ type ToggleIsFetchingAT = {
     isFetching: boolean
 }
 
+type SetUserProfileAT = {
+    type: "SET_USER_PROFILE"
+    profile: ProfileType
+}
+
+
+
 export type ActionsType =
     AddPostActionType
     | AddMessageActionType
@@ -60,6 +68,7 @@ export type ActionsType =
     | SetCurrentPageAT
     | SetUsersTotalCountAT
     | ToggleIsFetchingAT
+    | SetUserProfileAT
 
 export type AppStateType = ReturnType<typeof rootReducer>
 

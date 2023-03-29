@@ -31,19 +31,8 @@ export type MapDispatchProps = {
     toggleIsFetching: (isFetching: boolean) => void
 }
 
-export type UsersContainerType = {
-    users: Array<UsersType>
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
-    setUsers: (users: Array<UsersType>) => void
-    setCurrentPage: (currentPage: number) => void
-    setTotalUsersCount: (totalCount: number) => void
-    toggleIsFetching: (isFetching: boolean) => void
-}
+export type UsersContainerType = MapStatePropsType & MapDispatchProps
+
 
 class UsersContainer extends React.Component<UsersContainerType> {
 
