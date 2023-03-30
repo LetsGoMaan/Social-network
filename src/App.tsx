@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-import {Header} from "./components/Header/Header";
 import NavBar from "./components/NavBar/NavBar";
 import {Route} from "react-router-dom";
 import {News} from "./components/News/News";
@@ -11,6 +10,7 @@ import {PostsType} from "./redux/profile-reducer";
 import {DialogsType, MessagesType} from "./redux/dialogs-reducer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 export type ProfilePageType = {
     posts: Array<PostsType>
@@ -42,7 +42,7 @@ function App() {
 
     return (
         <div className="app-wrapper">
-            <Header/>
+            <HeaderContainer/>
             <NavBar/>
             <div className="app-wrapper-content">
                 <Route path="/dialogs" render={() => <DialogsContainer />}/>
