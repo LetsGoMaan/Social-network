@@ -46,7 +46,7 @@ function App() {
             <NavBar/>
             <div className="app-wrapper-content">
                 <Route path="/dialogs" render={() => <DialogsContainer />}/>
-                <Route path="/profile" render={() => <ProfileContainer />}/>
+                <Route path="/profile/:userId?" render={() => <ProfileContainer />}/>
                 <Route path="/users" render={() => <UsersContainer/>}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>

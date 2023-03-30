@@ -57,3 +57,4 @@
 57. Прелоадер
 58. mapDispatchToProps лайфхак
 59. Страница профиля, ajax, API
+60. withRouter, props.match.params
