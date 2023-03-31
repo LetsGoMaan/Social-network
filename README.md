@@ -62,3 +62,4 @@
 62. Follow Unfollow API
 63. DAL, axios.create
 64. Кнопка отключена (подписаться\отписаться)
+65. redux-thunk теория
