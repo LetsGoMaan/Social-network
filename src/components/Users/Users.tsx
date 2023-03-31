@@ -10,9 +10,11 @@ type UsersPropsType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    followingInProgress: Array<number>
     onPageChanged: (pageNumber: number) => void
     follow: (userId: number) => void
     unfollow: (userId: number) => void
+    toggleFollowingProgress: (isFetching: boolean, userId: number) => void
 }
 
 
@@ -26,8 +28,8 @@ const Users = (props: UsersPropsType) => {
         <div>
             <div>
                 <div>
-                    {pages.map(p => {
-                        return <span className={props.currentPage === p ? styles.selectedPage : ""}
+                    {pages.map((p,index) => {
+                        return <span key={index} className={props.currentPage === p ? styles.selectedPage : ""}
                                      onClick={() => {
                                          props.onPageChanged(p)
                                      }}>{p} </span>
@@ -43,30 +45,34 @@ const Users = (props: UsersPropsType) => {
                 </div>
                 <div>
             {u.followed
-                ? <button onClick={() => {
+                ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                     // axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{
                     //     withCredentials: true,
                     //     headers: {
                     //         "API-KEY": "5387a064-53c2-41e2-a48f-3c0a2fb2fa92"
                     //     }
                     // })
+                    props.toggleFollowingProgress(true, u.id)
                     followAPI.unfollow(u.id).then(data => {
                             if (data.resultCode === 0) {
                                 props.unfollow(u.id)
                             }
+                        props.toggleFollowingProgress(false, u.id)
                         })
                 }}>Unfollow</button>
-                : <button onClick={() => {
+                : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                     // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
                     //     withCredentials: true,
                     //     headers: {
                     //         "API-KEY": "5387a064-53c2-41e2-a48f-3c0a2fb2fa92"
                     //     }
                     // })
+                    props.toggleFollowingProgress(true, u.id)
                     followAPI.follow(u.id).then(data => {
                             if (data.resultCode === 0) {
                                 props.follow(u.id)
                             }
+                        props.toggleFollowingProgress(false, u.id)
                         })
                 }}>Follow</button>}
                 </div>

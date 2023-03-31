@@ -4,7 +4,7 @@ import {
     follow,
     setCurrentPage,
     setTotalUsersCount,
-    setUsers,
+    setUsers, toggleFollowingProgress,
     toggleIsFetching,
     unfollow,
     UsersType
@@ -20,6 +20,7 @@ export type MapStatePropsType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: Array<number>
 }
 
 export type MapDispatchProps = {
@@ -29,6 +30,8 @@ export type MapDispatchProps = {
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
+    toggleFollowingProgress: (isFetching: boolean, userId: number) => void
+
 }
 
 export type UsersContainerType = MapStatePropsType & MapDispatchProps
@@ -71,7 +74,10 @@ class UsersContainer extends React.Component<UsersContainerType> {
                        currentPage={this.props.currentPage}
                        onPageChanged={this.onPageChanged}
                        follow={this.props.follow}
-                       unfollow={this.props.unfollow}/>
+                       unfollow={this.props.unfollow}
+                       followingInProgress={this.props.followingInProgress}
+                       toggleFollowingProgress = {this.props.toggleFollowingProgress}
+                />
             </>
 
         )
@@ -84,7 +90,8 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
         pageSize: state.userPage.pageSize,
         totalUsersCount: state.userPage.totalUsersCount,
         currentPage: state.userPage.currentPage,
-        isFetching: state.userPage.isFetching
+        isFetching: state.userPage.isFetching,
+        followingInProgress: state.userPage.followingInProgress
     }
 }
 // let mapDispatchToProps = (dispatch: Dispatch): MapDispatchProps => {
@@ -118,5 +125,6 @@ export default connect(mapStateToProps, {
     setCurrentPage,
     setTotalUsersCount,
     toggleIsFetching,
+    toggleFollowingProgress,
 
 })(UsersContainer);
