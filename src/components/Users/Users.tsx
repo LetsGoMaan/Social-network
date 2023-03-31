@@ -3,7 +3,7 @@ import styles from "./Users.module.css";
 import userPhoto from "../../assets/images/user.png";
 import {UsersType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
+import {followAPI} from "../../api/api";
 
 type UsersPropsType = {
     users: Array<UsersType>
@@ -44,27 +44,27 @@ const Users = (props: UsersPropsType) => {
                 <div>
             {u.followed
                 ? <button onClick={() => {
-                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{
-                        withCredentials: true,
-                        headers: {
-                            "API-KEY": "5387a064-53c2-41e2-a48f-3c0a2fb2fa92"
-                        }
-                    })
-                        .then(response => {
-                            if (response.data.resultCode === 0) {
+                    // axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{
+                    //     withCredentials: true,
+                    //     headers: {
+                    //         "API-KEY": "5387a064-53c2-41e2-a48f-3c0a2fb2fa92"
+                    //     }
+                    // })
+                    followAPI.unfollow(u.id).then(data => {
+                            if (data.resultCode === 0) {
                                 props.unfollow(u.id)
                             }
                         })
                 }}>Unfollow</button>
                 : <button onClick={() => {
-                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                        withCredentials: true,
-                        headers: {
-                            "API-KEY": "5387a064-53c2-41e2-a48f-3c0a2fb2fa92"
-                        }
-                    })
-                        .then(response => {
-                            if (response.data.resultCode === 0) {
+                    // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                    //     withCredentials: true,
+                    //     headers: {
+                    //         "API-KEY": "5387a064-53c2-41e2-a48f-3c0a2fb2fa92"
+                    //     }
+                    // })
+                    followAPI.follow(u.id).then(data => {
+                            if (data.resultCode === 0) {
                                 props.follow(u.id)
                             }
                         })
