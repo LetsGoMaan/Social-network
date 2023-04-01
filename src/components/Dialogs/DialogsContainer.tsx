@@ -39,6 +39,7 @@ import {DialogsPageType} from "../../App";
 type MapStatePropsType = {
     dialogsPage: DialogsPageType
     newMessageText: string
+    isAuth: boolean
 }
 
 type MapDispatchProps = {
@@ -50,7 +51,8 @@ type MapDispatchProps = {
 let mapStateToProps = (state:AppStateType) : MapStatePropsType => {
     return {
         dialogsPage: state.dialogsPage,
-        newMessageText: state.dialogsPage.newMessageText
+        newMessageText: state.dialogsPage.newMessageText,
+        isAuth: state.auth.isAuth
     }
 }
 let mapDispatchToProps = (dispatch: Dispatch):MapDispatchProps => {
