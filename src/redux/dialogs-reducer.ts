@@ -1,5 +1,3 @@
-import {ActionsType} from "./redux-store";
-
 const ADD_MESSAGE = "ADD-MESSAGE"
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT"
 
@@ -11,6 +9,16 @@ export type MessagesType = {
     id: number
     message: string
 }
+
+type AddMessageActionType = {
+    type: "ADD-MESSAGE"
+}
+type UpdateNewMessageTextActionType = {
+    type: "UPDATE-NEW-MESSAGE-TEXT"
+    newText: string
+}
+
+export type DialogsActionsType = AddMessageActionType | UpdateNewMessageTextActionType
 
 let initialState = {
     dialogs: [
@@ -34,7 +42,7 @@ let initialState = {
 
 export type InitialStateType = typeof initialState
 
-export const dialogsReducer = (state: InitialStateType = initialState, action:ActionsType):InitialStateType => {
+export const dialogsReducer = (state: InitialStateType = initialState, action:DialogsActionsType):InitialStateType => {
 
 
     switch (action.type) {
@@ -61,12 +69,12 @@ export const dialogsReducer = (state: InitialStateType = initialState, action:Ac
     }
 }
 
-export const addMessageActionCreator = (): ActionsType => {
+export const addMessageActionCreator = (): DialogsActionsType => {
     return {
         type: ADD_MESSAGE
     }
 }
-export const updateNewMessageTextActionCreator = (newText: string): ActionsType => {
+export const updateNewMessageTextActionCreator = (newText: string): DialogsActionsType => {
     return {
         type: UPDATE_NEW_MESSAGE_TEXT,
         newText: newText

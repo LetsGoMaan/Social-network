@@ -1,5 +1,6 @@
-import {ActionsType} from "./redux-store";
 import {ProfileType} from "../components/Profile/ProfileContainer";
+import {Dispatch} from "redux";
+import {userAPI} from "../api/api";
 
 const ADD_POST = "ADD-POST"
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
@@ -10,6 +11,20 @@ export type PostsType = {
     message: string
     likesCount: number
 }
+
+type AddPostActionType = {
+    type: "ADD-POST"
+}
+type UpdateNewPostTextActionType = {
+    type: "UPDATE-NEW-POST-TEXT"
+    newText: string
+}
+type SetUserProfileAT = {
+    type: "SET_USER_PROFILE"
+    profile: ProfileType
+}
+
+export type ProfileActionsType = AddPostActionType | UpdateNewPostTextActionType | SetUserProfileAT
 
 let initialState = {
     posts: [
@@ -32,7 +47,7 @@ let initialState = {
 
 export type InitialStateType = typeof initialState
 
-const profileReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
+const profileReducer = (state: InitialStateType = initialState, action: ProfileActionsType): InitialStateType => {
 
 
     switch (action.type) {
@@ -64,22 +79,29 @@ const profileReducer = (state: InitialStateType = initialState, action: ActionsT
     }
 }
 
-export const addPostActionCreator = (): ActionsType => {
+export const addPostActionCreator = (): ProfileActionsType => {
     return {
         type: ADD_POST
     }
 }
-export const updateNewPostTextActionCreator = (newText: string): ActionsType => {
+export const updateNewPostTextActionCreator = (newText: string): ProfileActionsType => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         newText: newText
     }
 }
-
-export const setUserProfile = (profile: ProfileType): ActionsType => {
+export const setUserProfile = (profile: ProfileType): ProfileActionsType => {
     return {
         type: SET_USER_PROFILE,
         profile
+    }
+}
+
+export const getUserProfile = (userId: string) => {
+    return (dispatch: Dispatch<ProfileActionsType>) => {
+        userAPI.getProfile(userId).then(response => {
+            dispatch(setUserProfile(response.data))
+        })
     }
 }
 
