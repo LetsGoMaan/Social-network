@@ -12,6 +12,7 @@ import {
 import React from "react";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 export type MapStatePropsType = {
     users: Array<UsersType>
@@ -122,7 +123,7 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
 // }
 
 
-export default connect(mapStateToProps, {
+export default withAuthRedirect(connect(mapStateToProps, {
     followSuccess,
     unfollowSuccess,
     setCurrentPage,
@@ -131,4 +132,4 @@ export default connect(mapStateToProps, {
     follow,
     unfollow
 
-})(UsersContainer);
+})(UsersContainer));

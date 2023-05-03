@@ -3,7 +3,6 @@ import classes from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {DialogsPageType} from "../../App";
-import {Redirect} from "react-router-dom";
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType
@@ -32,7 +31,7 @@ export const Dialogs = (props: DialogsPropsType) => {
         }
     }
 
-    if(!props.isAuth) return <Redirect to={'/login'}/>
+    // if(!props.isAuth) return <Redirect to={'/login'}/>
 
     return (
 
