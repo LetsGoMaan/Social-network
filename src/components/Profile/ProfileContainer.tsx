@@ -1,10 +1,11 @@
-import React from "react";
+import React, {ComponentType} from "react";
 import {Profile} from "./Profile";
 import {AppStateType} from "../../redux/redux-store";
 import {getUserProfile} from "../../redux/profile-reducer";
 import {connect} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 type PhotosType = {
     small: string
@@ -62,9 +63,5 @@ let mapStateToProps = (state:AppStateType):MapStateToPropsType => {
     }
 }
 
-
-
-let WithUrlDataContainerComponent = withRouter(ProfileContainer)
-
-export default withAuthRedirect(connect(mapStateToProps, {getUserProfile})(WithUrlDataContainerComponent))
+export default compose<ComponentType>(connect(mapStateToProps, {getUserProfile}),withRouter, withAuthRedirect  )(ProfileContainer)
 

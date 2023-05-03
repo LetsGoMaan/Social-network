@@ -5,13 +5,16 @@ import {Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {PostsType} from "./redux/profile-reducer";
 import {DialogsType, MessagesType} from "./redux/dialogs-reducer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
+
+
+
 
 export type ProfilePageType = {
     posts: Array<PostsType>

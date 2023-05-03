@@ -66,4 +66,5 @@
 66. redux-thunk практика 
 67. redux-thunk проверка
 68. Редирект
-69. HOC withAuthRedirect 
+69. HOC withAuthRedirect
+70. Функция compose
