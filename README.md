@@ -69,3 +69,4 @@
 69. HOC withAuthRedirect
 70. Функция compose
 71. setState, local state в классовых компонентах
+72. Теория о версия библиотек, обновление версий
