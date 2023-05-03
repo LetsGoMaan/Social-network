@@ -68,3 +68,4 @@
 68. Редирект
 69. HOC withAuthRedirect
 70. Функция compose
+71. setState, local state в классовых компонентах
