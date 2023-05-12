@@ -74,3 +74,4 @@
 74. componentDidUpdate
 75. Работа с формами redux-form/react-hook-form
 75.1 Рефакторинг
+76. Применение форм в других компонентах

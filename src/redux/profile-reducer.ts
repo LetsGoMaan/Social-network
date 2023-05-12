@@ -3,7 +3,6 @@ import {Dispatch} from "redux";
 import {profileAPI, userAPI} from "../api/api";
 
 const ADD_POST = "ADD-POST"
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
 const SET_USER_PROFILE = "SET_USER_PROFILE"
 const SET_STATUS = "SET_STATUS"
 
@@ -15,11 +14,9 @@ export type PostsType = {
 
 type AddPostActionType = {
     type: "ADD-POST"
+    newPostText: string
 }
-type UpdateNewPostTextActionType = {
-    type: "UPDATE-NEW-POST-TEXT"
-    newText: string
-}
+
 type SetUserProfileAT = {
     type: "SET_USER_PROFILE"
     profile: ProfileType
@@ -29,7 +26,7 @@ type SetStatusAT = {
     status: string
 }
 
-export type ProfileActionsType = AddPostActionType | UpdateNewPostTextActionType | SetUserProfileAT | SetStatusAT
+export type ProfileActionsType = AddPostActionType | SetUserProfileAT | SetStatusAT
 
 let initialState = {
     posts: [
@@ -38,7 +35,6 @@ let initialState = {
         {id: 3, message: "It's my first post", likesCount: 10},
         {id: 4, message: "It's my first post", likesCount: 10},
     ] as Array<PostsType>,
-    newPostText: "",
     profile: {
         photos: {
             small: '',
@@ -60,20 +56,14 @@ const profileReducer = (state: InitialStateType = initialState, action: ProfileA
         case ADD_POST:
             const newPost = {
                 id: 5,
-                message: state.newPostText,
+                message: action.newPostText,
                 likesCount: 0,
             }
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                newPostText: ""
+
             }
-        case UPDATE_NEW_POST_TEXT: {
-            return {
-                ...state,
-                newPostText: action.newText
-            }
-        }
         case SET_STATUS: {
             return {
                 ...state,
@@ -91,17 +81,13 @@ const profileReducer = (state: InitialStateType = initialState, action: ProfileA
     }
 }
 
-export const addPostActionCreator = (): ProfileActionsType => {
+export const addPostActionCreator = (newPostText: string): ProfileActionsType => {
     return {
-        type: ADD_POST
+        type: ADD_POST,
+        newPostText
     }
 }
-export const updateNewPostTextActionCreator = (newText: string): ProfileActionsType => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: newText
-    }
-}
+
 export const setStatus = (status: string): ProfileActionsType => {
     return {
         type: SET_STATUS,
