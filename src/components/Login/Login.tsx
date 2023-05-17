@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
+import styles from "../common/FormsControls/FormsControls.module.css"
 
 type FormDataType = {
     email: string
@@ -22,19 +23,19 @@ const Login = (props: any) => {
         props.login(formData.email, formData.password, formData.rememberMe)
     }
 
-    if(props.isAuth) {
+    if (props.isAuth) {
         return <Redirect to={"/profile"}/>
     }
 
     return (
         <div>
-           <h1>LOGIN</h1>
-          <LoginReduxForm onSubmit={onSubmit}/>
+            <h1>LOGIN</h1>
+            <LoginReduxForm onSubmit={onSubmit}/>
         </div>
     );
 };
 
-const mapStateToProps = (state:AppStateType):MapStatePropsType => {
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         isAuth: state.auth.isAuth
     }
@@ -42,18 +43,24 @@ const mapStateToProps = (state:AppStateType):MapStatePropsType => {
 
 export default connect(mapStateToProps, {login})(Login);
 
-const LoginForm : React.FC<InjectedFormProps<FormDataType>> = (props) => { /////// fix any/
+const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => { /////// fix any/
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
                 <Field placeholder={"Email"} name={"email"} component={Input} validate={[required]}/>
             </div>
             <div>
-                <Field placeholder={"Password"} name={"password"} component={Input} validate={[required]} type={"password"}/>
+                <Field placeholder={"Password"} name={"password"} component={Input} validate={[required]}
+                       type={"password"}/>
             </div>
             <div>
                 <Field type={"checkbox"} name={"remember me"} component={Input}/> remember me
             </div>
+            {props.error &&
+                <div className={styles.formSummaryError}>
+                    {props.error}
+                </div>
+            }
             <div>
                 <button>Login</button>
             </div>
@@ -61,4 +68,4 @@ const LoginForm : React.FC<InjectedFormProps<FormDataType>> = (props) => { /////
     );
 };
 
-const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
+const LoginReduxForm = reduxForm<FormDataType>({form: "login"})(LoginForm)
