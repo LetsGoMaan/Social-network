@@ -12,13 +12,7 @@ import {Provider} from "react-redux";
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
-            <App
-                // store={store}
-                 // addPost={store.addPost.bind(store)}
-                 // updateNewPostText={store.updateNewPostText.bind(store)}
-                 // addMessage={store.addMessage.bind(store)}
-                 // updateNewMessageText={store.updateNewMessageText.bind(store)}
-            />
+            <App/>
             </Provider>
         </BrowserRouter>, document.getElementById("root")
     );

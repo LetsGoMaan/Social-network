@@ -1,6 +1,7 @@
 import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
+import {SetInitializedType} from "./app-reducer";
 
 const SET_USER_DATA = "SET_USER_DATA"
 
@@ -18,10 +19,10 @@ type SetUserDataType = {
 
 
 
-export type AuthActionsType = SetUserDataType
+export type AuthActionsType = SetUserDataType | SetInitializedType
 
 let initialState = {
-    id: null,
+    id: '',
     email: '',
     login: '',
     isAuth: false

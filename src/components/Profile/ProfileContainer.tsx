@@ -31,7 +31,7 @@ type MapDispatchProps = {
 type MapStateToPropsType = {
     profile: ProfileType
     status: string
-    authorizedUserId: null
+    authorizedUserId: string
     isAuth: boolean
 }
 
@@ -39,38 +39,54 @@ type ProfileContainerType = MapStateToPropsType & MapDispatchProps
 
 type PropsType = RouteComponentProps<PathParamsType> & ProfileContainerType
 
-class ProfileContainer extends React.Component<PropsType>  {
+class ProfileContainer extends React.Component<PropsType> {
 
     componentDidMount() {
-
-        // let userId = this.props.match.params.userId || "28139"
-        // // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-        // profileAPI.getProfile(userId).then(response => {
-        //         this.props.setUserProfile(response.data)
-        //     })
-        this.props.getUserProfile(this.props.match.params.userId || "28139")
-        this.props.getStatus(this.props.match.params.userId)
+        let userId = this.props.match.params.userId
+        if (!userId) {
+            userId = this.props.authorizedUserId
+            if (!userId) {
+                this.props.history.push("/login")
+            }
+        }
+        this.props.getUserProfile(userId)
+        this.props.getStatus(userId)
     }
 
 
-    render () {
-            debugger
-            return (
-                <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>
-            )
+    render() {
+        return (
+            <Profile {...this.props} profile={this.props.profile} status={this.props.status}
+                     updateStatus={this.props.updateStatus}/>
+        )
 
 
-    }
-}
-
-let mapStateToProps = (state:AppStateType):MapStateToPropsType => {
-    return {
-        profile: state.profilePage.profile,
-        status: state.profilePage.status,
-        authorizedUserId: state.auth.id,
-        isAuth: state.auth.isAuth,
     }
 }
 
-export default compose<ComponentType>(connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),withRouter, withAuthRedirect  )(ProfileContainer)
+let
+    mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+        return {
+            profile: state.profilePage.profile,
+            status: state.profilePage.status,
+            authorizedUserId: state.auth.id,
+            isAuth: state.auth.isAuth,
+        }
+    }
+
+export default compose<ComponentType>(connect
+
+    (
+        mapStateToProps
+        , {
+            getUserProfile
+            ,
+            getStatus
+            ,
+            updateStatus
+        }
+    ),
+    withRouter, withAuthRedirect
+)
+(ProfileContainer)
 
