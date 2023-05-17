@@ -7,11 +7,15 @@ type AuthDataType = {
     userId: number | null
     email: string
     login: string
+    isAuth: boolean
 }
+
 type SetUserDataType = {
     type: "SET_USER_DATA"
-    data: AuthDataType
+    payload: AuthDataType
 }
+
+
 
 export type AuthActionsType = SetUserDataType
 
@@ -29,8 +33,8 @@ const authReducer = (state:InitialStateType = initialState , action:AuthActionsT
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.payload,
+
             }
         default:
             return state
@@ -39,24 +43,46 @@ const authReducer = (state:InitialStateType = initialState , action:AuthActionsT
 
 }
 
-export const setAuthUserData = (userId: number, email: string, login: string): AuthActionsType => {
+export const setAuthUserData = (userId: number | null, email: string, login: string, isAuth:boolean): AuthActionsType => {
     return {
         type: SET_USER_DATA,
-        data: {
+        payload: {
             userId,
             email,
-            login
+            login,
+            isAuth
         }
 
     }
 }
+
 
 export const getAuthUserData = () => {
     return (dispatch: Dispatch<AuthActionsType>) => {
         authAPI.authMe().then(response => {
             if(response.data.resultCode === 0) {
                 let {id, email, login} = response.data.data
-                dispatch(setAuthUserData(id, email, login))
+                dispatch(setAuthUserData(id, email, login, true))
+            }
+        })
+    }
+}
+
+export const login = (email: string, password: string, rememberMe: boolean) => {
+    return (dispatch: any) => {
+        authAPI.login(email, password, rememberMe, ).then(response => {
+            if(response.data.resultCode === 0) {
+                dispatch(getAuthUserData())
+            }
+        })
+    }
+}
+
+export const logout = () => {
+    return (dispatch: Dispatch<AuthActionsType>) => {
+        authAPI.logOut().then(response => {
+            if(response.data.resultCode === 0) {
+                dispatch(setAuthUserData(null, '', '', false))
             }
         })
     }
