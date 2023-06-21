@@ -22,7 +22,7 @@ type SetUserDataType = {
 export type AuthActionsType = SetUserDataType | SetInitializedType
 
 let initialState = {
-    id: '',
+    userId: '' ,
     email: '',
     login: '',
     isAuth: false
@@ -36,8 +36,7 @@ const authReducer = (state:InitialStateType = initialState , action:AuthActionsT
             return {
                 ...state,
                 ...action.payload,
-
-            }
+            } as unknown as InitialStateType
         default:
             return state
 
@@ -61,7 +60,8 @@ export const setAuthUserData = (userId: number | null, email: string, login: str
 
 export const getAuthUserData = () => {
     return (dispatch: Dispatch<AuthActionsType>) => {
-        authAPI.authMe().then(response => {
+        authAPI.authMe()
+            .then(response => {
             if(response.data.resultCode === 0) {
                 let {id, email, login} = response.data.data
                 dispatch(setAuthUserData(id, email, login, true))
