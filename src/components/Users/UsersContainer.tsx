@@ -2,8 +2,7 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {
     follow,
-    followSuccess,
-    getUsers,
+    followSuccess, requestUsers,
     setCurrentPage,
     toggleFollowingProgress,
     unfollow,
@@ -14,6 +13,14 @@ import React, {ComponentType} from "react";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers
+} from "../../redux/users-selectors";
 
 export type MapStatePropsType = {
     users: Array<UsersType>
@@ -31,7 +38,7 @@ export type MapDispatchProps = {
     // setTotalUsersCount: (totalCount: number) => void
     // toggleIsFetching: (isFetching: boolean) => void
     // toggleFollowingProgress: (isFetching: boolean, userId: number) => void
-    getUsers: (currentPage: number, pageSize: number) => void
+    requestUsers: (currentPage: number, pageSize: number) => void
     follow: (userId: number) => void
     unfollow: (userId: number) => void
 }
@@ -46,7 +53,7 @@ class UsersContainer extends React.Component<UsersContainerType> {
     //
     // }
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        this.props.requestUsers(this.props.currentPage, this.props.pageSize)
         //  this.props.toggleIsFetching(true)
         // userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
         //          this.props.toggleIsFetching(false)
@@ -62,7 +69,7 @@ class UsersContainer extends React.Component<UsersContainerType> {
         //         this.props.setUsers(data.items)
         //         this.props.toggleIsFetching(false)
         //     })
-        this.props.getUsers(pageNumber, this.props.pageSize)
+        this.props.requestUsers(pageNumber, this.props.pageSize)
     }
     //     props.setUsers( [
     //         {id: 1, photoUrl: "https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png", followed: false, fullName: "Dmitry", status: "I am a boss", location: {city: "Minsk", country: "Belarus"}},
@@ -90,14 +97,25 @@ class UsersContainer extends React.Component<UsersContainerType> {
     }
 }
 
+// let mapStateToProps = (state: AppStateType): MapStatePropsType => {
+//     return {
+//         users: state.userPage.users,
+//         pageSize: state.userPage.pageSize,
+//         totalUsersCount: state.userPage.totalUsersCount,
+//         currentPage: state.userPage.currentPage,
+//         isFetching: state.userPage.isFetching,
+//         followingInProgress: state.userPage.followingInProgress
+//     }
+// }
+
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
-        users: state.userPage.users,
-        pageSize: state.userPage.pageSize,
-        totalUsersCount: state.userPage.totalUsersCount,
-        currentPage: state.userPage.currentPage,
-        isFetching: state.userPage.isFetching,
-        followingInProgress: state.userPage.followingInProgress
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state)
     }
 }
 // let mapDispatchToProps = (dispatch: Dispatch): MapDispatchProps => {
@@ -132,7 +150,7 @@ export default compose<ComponentType>(
         unfollowSuccess,
         setCurrentPage,
         toggleFollowingProgress,
-        getUsers,
+        requestUsers,
         follow,
         unfollow
 
