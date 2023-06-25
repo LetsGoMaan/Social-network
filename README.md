@@ -86,3 +86,4 @@
 85. useEffect
 86. Виртуальный DOM
 87. shouldComponentUpdate, PureComponent, memo
+88. Теория о чистой функции
