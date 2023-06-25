@@ -85,3 +85,4 @@
 84. useState
 85. useEffect
 86. Виртуальный DOM
+87. shouldComponentUpdate, PureComponent, memo
