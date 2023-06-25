@@ -88,3 +88,4 @@
 87. shouldComponentUpdate, PureComponent, memo
 88. Теория о чистой функции
 89. Тесты, тестирование редьюсера
+90. Рефакторинг

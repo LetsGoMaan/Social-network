@@ -43,9 +43,9 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 
 export default connect(mapStateToProps, {login})(Login);
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => { /////// fix any/
+const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit,error}) => { /////// fix any/
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field placeholder={"Email"} name={"email"} component={Input} validate={[required]}/>
             </div>
@@ -56,9 +56,9 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => { //////
             <div>
                 <Field type={"checkbox"} name={"remember me"} component={Input}/> remember me
             </div>
-            {props.error &&
+            {error &&
                 <div className={styles.formSummaryError}>
-                    {props.error}
+                    {error}
                 </div>
             }
             <div>
