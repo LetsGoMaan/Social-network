@@ -93,3 +93,4 @@
 92. Тестирование компонент
 93. Пагинатор, постраничный вывод
 94. React.lazy и React.Suspense
+95. Gh pages, deploy
