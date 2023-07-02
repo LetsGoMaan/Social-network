@@ -13,7 +13,19 @@ let state = {
             large: ''
         },
         fullName: '',
-        aboutMe: ''
+        aboutMe: '',
+        lookingForAJob: false,
+        lookingForAJobDescription: '',
+        contacts: {
+            github: '',
+            vk: '',
+            facebook: '',
+            instagram: '',
+            twitter: '',
+            website: '',
+            youtube: '',
+            mainLink: '',
+        }
     },
     status: ""
 
