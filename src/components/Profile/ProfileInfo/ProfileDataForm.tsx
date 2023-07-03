@@ -1,12 +1,16 @@
 import React from "react";
-import {reduxForm} from "redux-form";
+import {InjectedFormProps, reduxForm} from "redux-form";
 import {createField, Input, Textarea} from "../../common/FormsControls/FormsControls";
 import classes from "./ProfileInfo.module.css"
 import styles from "../../common/FormsControls/FormsControls.module.css"
+import {ProfileType} from "../ProfileContainer";
 
+type PropsType = {
+    profile: ProfileType
+}
 
-
-const ProfileDataForm = ({profile, handleSubmit,error}: any) => {
+const ProfileDataForm: React.StatelessComponent<PropsType & InjectedFormProps<{}, PropsType>> = ({profile, handleSubmit,error}) => {
+    // React.StatelessComponent<PropsType & InjectedFormProps<{}, PropsType>>
     console.log(profile)
     return (
         <form onSubmit={handleSubmit}>
@@ -43,6 +47,6 @@ const ProfileDataForm = ({profile, handleSubmit,error}: any) => {
     )
 }
 
-const ProfileDataFormReduxForm = reduxForm({form: "edit-profile"})(ProfileDataForm)
+const ProfileDataFormReduxForm = reduxForm<{}, PropsType>({form: "edit-profile"})(ProfileDataForm)
 
 export default ProfileDataFormReduxForm

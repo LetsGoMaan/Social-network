@@ -43,7 +43,7 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
             <div className={classes.descriptionBlock}>
                 <img src={props.profile.photos.large || userPhoto} className={classes.mainPhoto} alt="profilePhoto"/>
                 {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
-                {editMode ? <ProfileDataForm profile={props.profile} onSubmit={onSubmit}/> :
+                {editMode ? <ProfileDataForm  profile={props.profile} onSubmit={onSubmit}/> :
                     <ProfileData profile={props.profile} isOwner={props.isOwner} goToEditMode={() => {
                         setEditMode(true)
                     }}/>}
