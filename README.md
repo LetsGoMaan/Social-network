@@ -99,3 +99,4 @@
 97.1 Рефакторинг
 98. Captcha
 98.1 Рефакторинг
+99. Теория о try-catch, router switch, classnames
