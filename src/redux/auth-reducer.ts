@@ -101,9 +101,8 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 }
 
 export const getCaptchaUrl = () => {
-    debugger
     return async (dispatch: any) => {
-        debugger
+
         const response = await securityAPI.getCaptchaUrl()
         const captchaUrl = response.data.url
         dispatch(getCaptchaUrlSuccess(captchaUrl))

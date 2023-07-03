@@ -10,8 +10,6 @@ type PropsType = {
 }
 
 const ProfileDataForm: React.StatelessComponent<PropsType & InjectedFormProps<{}, PropsType>> = ({profile, handleSubmit,error}) => {
-    // React.StatelessComponent<PropsType & InjectedFormProps<{}, PropsType>>
-    console.log(profile)
     return (
         <form onSubmit={handleSubmit}>
             <div>
